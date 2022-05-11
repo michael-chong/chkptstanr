@@ -167,8 +167,8 @@ chkpt_stan <- function(model_code,
     )
     
   }
-  
-  if (isFALSE(check_for_model("model_threads.exe", path))) {
+  model_name <- ifelse(.Platform$OS.type == "unix", "model", "model_threads.exe")
+  if (isFALSE(check_for_model(model_name, path))) {
     
     stan_m3 <- cmdstanr::cmdstan_model(stan_file = stan_code_path,
                              cpp_options = list(stan_threads = TRUE))
